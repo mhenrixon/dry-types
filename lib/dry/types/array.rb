@@ -15,7 +15,7 @@ module Dry
           else type
           end
 
-        Array::Member.new(primitive, **options, member: member)
+        Array::Member.new(primitive, **options.merge(member: member))
       end
     end
   end
