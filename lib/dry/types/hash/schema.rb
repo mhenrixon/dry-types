@@ -25,7 +25,7 @@ module Dry
         # @param [Hash] options
         # @option options [Hash{Symbol => Definition}] :member_types
         # @option options [String] :key_transform_fn
-        def initialize(_primitive, **options)
+        def initialize(primitive, **options)
           @member_types = options.fetch(:member_types)
 
           meta = options[:meta] || EMPTY_HASH
@@ -33,7 +33,7 @@ module Dry
 
           @transform_key = Dry::Types::FnContainer[key_fn]
 
-          super
+          super(primitive, **options)
         end
 
         # @param [Hash] hash
