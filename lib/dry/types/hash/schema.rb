@@ -134,7 +134,7 @@ module Dry
 
         private
 
-        def resolve(hash)
+        def resolve(hash, &block)
           result = {}
 
           hash.each do |key, value|
@@ -148,13 +148,13 @@ module Dry
           end
 
           if result.size < member_types.size
-            resolve_missing_keys(result, &Proc.new)
+            resolve_missing_keys(result, &block)
           end
 
           result
         end
 
-        def resolve_missing_keys(result)
+        def resolve_missing_keys(result, &block)
           member_types.each do |k, type|
             next if result.key?(k)
 
